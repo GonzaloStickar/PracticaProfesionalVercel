@@ -74,7 +74,7 @@ app.post("/login", async (req, res) => {
         const { username, password } = req.body;
         if (username === process.env.loginUserName && password === process.env.loginPassword) {
             return res.status(200).json({
-                msg: "Ok"
+                msg: "Ok."
             });
         } else {
             res.redirect('/inicio');
