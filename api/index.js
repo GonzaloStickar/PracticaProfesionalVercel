@@ -8,6 +8,7 @@ const path = require('path');
 
 const { main } = require('./main.js');
 const { loginUserGET } = require('./loginUser.js')
+const { sessionSecret } = require('./config.js');
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(express.json());
 
 //app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: sessionSecret,
   resave: false,
   saveUninitialized: false,
 }));
