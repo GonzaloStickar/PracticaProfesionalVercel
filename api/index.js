@@ -74,20 +74,56 @@ app.post('/dashboard', isAuth, (req, res) => {
 
 app.post("/login", async (req, res) => {
     try {
-
         const { username, password } = req.body;
-
-        const passwordLoginHash = process.env.loginPassword;
-
-        // Hashear la contraseña ingresada por el usuario
-        const passwordHash = await bcrypt.hash(password, 12);
         
-        // Comparar la contraseña ingresada con el hash almacenado
-        const passwordsIguales = await bcrypt.compare(password, passwordLoginHash);
+        const passwordLogin = process.env.loginPassword;
+        const usernameLogin = process.env.loginUserName;
         
-        console.log(passwordsIguales);
+        let passwordsIguales = false;
+        let usernamesIguales = false;
 
-        if (!passwordsIguales) {
+        const comparePasswords = async () => {
+            return new Promise((resolve, reject) => {
+                bcrypt.hash(password, 10, function (err, hash) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        bcrypt.compare(passwordLogin, hash, function (err, result) {
+                            if (err) {
+                                reject(err);
+                            }
+                            console.log("Passwords iguales:", result);
+                            passwordsIguales=result;
+                            resolve(result);
+                        });
+                    }
+                });
+            });
+        };
+        
+        const compareUsername = async () => {
+            return new Promise((resolve, reject) => {
+                bcrypt.hash(username, 10, function (err, hash) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        bcrypt.compare(usernameLogin, hash, function (err, result) {
+                            if (err) {
+                                reject(err);
+                            }
+                            console.log("Usernames iguales:", result);
+                            passwordsIguales=result;
+                            resolve(result);
+                        });
+                    }
+                });
+            });
+        };
+        
+        passwordsIguales = await comparePasswords();
+        usernamesIguales = await compareUsername();
+        
+        if (!passwordsIguales || !usernamesIguales) {
             return res.status(401).send(`
                 <!DOCTYPE html>
                 <html lang="en">
@@ -113,10 +149,10 @@ app.post("/login", async (req, res) => {
                 </body>
                 </html>
             `);
+        } else if (passwordsIguales || usernamesIguales) { //Hay un problema acá
+            res.cookie('session_id', process.env.SESSION_SECRET);
+            res.redirect('/dashboard')
         }
-
-        res.cookie('session_id', process.env.SESSION_SECRET);
-        res.redirect('/dashboard')
 
     } catch (error) {
         return res.status(500).json({
