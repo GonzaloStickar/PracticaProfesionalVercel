@@ -78,7 +78,13 @@ app.post("/login", async (req, res) => {
         const { username, password } = req.body;
 
         const passwordLoginHash = process.env.loginPassword;
+
+        // Hashear la contraseña ingresada por el usuario
+        const passwordHash = await bcrypt.hash(password, 12);
+        
+        // Comparar la contraseña ingresada con el hash almacenado
         const passwordsIguales = await bcrypt.compare(password, passwordLoginHash);
+        
         console.log(passwordsIguales);
 
         if (!passwordsIguales) {
