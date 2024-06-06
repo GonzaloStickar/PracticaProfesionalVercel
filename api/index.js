@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const session = require('express-session');
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 //const { sql } = require('@vercel/postgres');
 const path = require('path');
 
@@ -77,7 +77,9 @@ app.post("/login", async (req, res) => {
                 msg: "Ok."
             });
         } else {
-            res.redirect('/inicio');
+            return res.status(200).json({
+                msg: "Bad."
+            });
         }
     } catch (error) {
         return res.status(500).json({

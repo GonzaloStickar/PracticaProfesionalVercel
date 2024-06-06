@@ -1,0 +1,144 @@
+<html>
+  <head>
+    <title>Practica Profesional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="stylesheet" href="../public/styles/index.css">
+  </head>
+  <body>
+    <header>
+      <div class="texto_sobre_img">
+
+        <nav class="navbar" id="inicio">
+          <ul>
+            <li>
+              <a href="#inicio" title="Ir al inicio">
+                <!--Para cambiar el estilo de home, info y demás, puede agregar
+                ' style="color:red; font-size: 25;" ' al lado de ' class="material-symbols-outlined" '-->
+                <span class="material-symbols-outlined">home</span>
+                <span class="texto_header">Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a href="#sobre_nosotros" title="Saber más sobre nosotros">
+                <span class="material-symbols-outlined">info</span>
+                <span class="texto_header">Sobre nosotros</span>
+              </a>
+            </li>
+            <li>
+              <a href="#contacto_reparacion" title="Hacer una consulta">
+                <span class="material-symbols-outlined">contact_page</span>
+                <span class="texto_header">Consulta</span>
+              </a>
+            </li>
+            <li class="iniciar_sesion">
+              <a href="/login" title="Iniciar sesión">
+                <span class="material-symbols-outlined">account_circle</span>
+                <span class="texto_header">Iniciar Sesión</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div>
+          <img src="../public/img/index_header.jpg" class="img_header">
+          <div class="overlay"></div>
+          <div class="texto_centrado">
+            <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, eum!</h2>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </div>
+        </div>
+
+    </header>
+
+    <main>
+      <div class="contenedor_fotos">
+        <section class="titulo_seccion">
+          <h2>Nuestras reparaciones</h2>
+        </section>
+        
+        <div class="galeria_figure_figcaption">
+          <article>
+            <figure>
+              <img src="../public/img/index_main_contenedor_fotos.jpg">
+              <figcaption>
+                <h4>Lorem, ipsum.</h4>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias asperiores nostrum sit dolore sunt ipsum adipisci debitis ea quia molestiae.
+                </p>
+              </figcaption>
+            </figure>
+          </article>
+          <article>
+            <figure>
+              <img src="../public/img/index_main_contenedor_fotos.jpg">
+              <figcaption>
+                <h4>Lorem, ipsum.</h4>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias asperiores nostrum sit dolore sunt ipsum adipisci debitis ea quia molestiae.
+                </p>
+              </figcaption>
+            </figure>
+          </article>
+          <article>
+            <figure>
+              <img src="../public/img/index_main_contenedor_fotos.jpg">
+              <figcaption>
+                <h4>Lorem, ipsum.</h4>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias asperiores nostrum sit dolore sunt ipsum adipisci debitis ea quia molestiae.
+                </p>
+              </figcaption>
+            </figure>
+          </article>
+        </div>
+      </div>
+
+      <div class="contenedor_consulta_reparacion" id="contacto_reparacion">
+        <aside>
+          <img src="../public/img/index_main_contenedor_consulta_reparacion.jpg">
+        </aside>
+
+        <article>
+          <h2>
+            ¿Como está el estado de tu reparación?
+          </h2>
+          <p>
+            Ingresa tu Nro. de Documento para consultar.
+          </p>
+
+          <form id="consulta_reparacion_form" action="/url"> <!--method="get"-->
+            <input type="number" id="input_consulta_reparacion_form" name="documento" placeholder="Nro. de Documento" required>
+            <button type="submit">Consultar</button>
+          </form>
+        </article>
+      </div>
+      
+      <div class="contenedor_info_contacto"  id="sobre_nosotros">
+        <article>
+          <h2>Sobre nosotros</h2>
+          <h3>Lorem</h3>
+          <p>Lorem ipsum dolor sit.</p>
+          <p>Lorem ipsum dolor sit.</p>
+          <p>Lorem ipsum dolor sit.</p>
+          <h3>Lorem</h3>
+          <p>Lorem ipsum dolor sit.</p>
+        </article>
+
+        <aside>
+          <img src="../public/img/index_contenedor_info_contacto.jpg">
+        </aside>
+      </div>
+    </main>
+
+    <footer>
+      <div class="links">
+        <a href="#">Términos y Condiciones de Uso</a> - 
+        <a href="#">Privacidad y Seguridad</a>
+      </div>
+
+      <p>&copy; 2024 Nombre de la empresa (Ej: "aaaaaa") - Todos los derechos reservados.</p>
+      <p>Contacto: aaa@gmail.com</p>
+    </footer>
+  </body>
+</html>
