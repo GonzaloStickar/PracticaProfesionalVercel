@@ -72,13 +72,13 @@ app.get("/todosLoginTrucho", validateCookie, (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         const { username, password } = req.body;
-        if (username === process.env.loginUserName && password === process.env.loginPassword) {
+        if (username !== process.env.loginUserName || password !== process.env.loginPassword) {
             return res.status(200).json({
-                msg: "Ok."
+                msg: "Bad."
             });
         } else {
             return res.status(200).json({
-                msg: "Bad."
+                msg: "Ok."
             });
         }
     } catch (error) {

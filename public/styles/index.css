@@ -141,11 +141,45 @@ body {
     color: #555;
 }
 
-@media (min-width: 1000px) {
+@media (max-width: 600px) {
     .contenedor_consulta_reparacion aside img, 
     .contenedor_info_contacto aside img {
-        
-        margin-bottom: 15px;
+        width:100% !important;
+        height:500px;
+        border-radius: 15px;
+    }
+}
+
+@media (max-width: 1220px) {
+    .contenedor_consulta_reparacion {
+        flex-direction: column;
+    }
+
+    .contenedor_consulta_reparacion article {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contenedor_consulta_reparacion article form input[type="number"] {
+        width: 60%;
+    }
+
+    .contenedor_info_contacto {
+        flex-direction: column-reverse;
+    }
+
+    .contenedor_consulta_reparacion article, 
+    .contenedor_info_contacto article {
+        padding-top: 50px;
+    }
+
+    .contenedor_consulta_reparacion article {
+        padding-right:0 !important;
+    }
+
+    .contenedor_info_contacto article {
+        padding-left:0 !important; /*Tiene que ir !important por que hay un padding-left:75px; fuera del media query*/
     }
 }
 
@@ -160,29 +194,6 @@ body {
 
     .galeria_figure_figcaption article {
         width: 100%;
-    }
-
-    .contenedor_consulta_reparacion {
-        flex-direction: column;
-    }
-
-    .contenedor_consulta_reparacion article {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .contenedor_consulta_reparacion article form input[type="number"] {
-        width: 60%;
-    }
-
-    .contenedor_info_contacto {
-        flex-direction: column-reverse;
-    }
-
-    .contenedor_consulta_reparacion article,
-    .contenedor_info_contacto article {
-        padding-left:0 !important; /*Tiene que ir !important por que hay un padding-left:75px; fuera del media query*/
     }
 }
 
@@ -367,8 +378,8 @@ body {
 
 .contenedor_consulta_reparacion aside img, 
 .contenedor_info_contacto aside img {
-    width:100%;
-    height:500;
+    width:600px;
+    height:500px;
     border-radius: 15px;
 }
 
@@ -383,7 +394,7 @@ body {
 }
 
 .contenedor_consulta_reparacion article {
-    padding-right: 75px;
+    padding-right:75px;
 }
 
 article form button {
