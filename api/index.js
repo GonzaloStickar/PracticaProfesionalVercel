@@ -63,12 +63,16 @@ function parseData(json) {
 
 app.post("/login", async (req, res) => {
     try {
-
+        
         const json = JSON.stringify(req.body);
         let data = parseData(json);
 
+        return res.status(200).send(data);
+        ```
+
         let passwordsIguales = await comparePasswords(data.password);
         let usernamesIguales = await compareUsername(data.username);
+
 
         if (usernamesIguales && passwordsIguales) {
             res.cookie('session_id', sessionSecret);
@@ -76,7 +80,7 @@ app.post("/login", async (req, res) => {
         } else {
             return loginUserPOSTwrong(req, res);
         }
-
+        ```
     } catch (error) {
         return res.status(500).json({
             msg: error.message,
