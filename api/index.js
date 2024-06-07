@@ -18,6 +18,8 @@ var jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+app.use(jsonParser);
+
 //app.set('trust proxy', 1) // trust first proxy 
 app.use(session({
   secret: sessionSecret,
@@ -56,18 +58,9 @@ app.post('/dashboard', isAuth, (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-app.post("/login", jsonParser, async (req, res) => {
+app.post("/login", async (req, res) => {
     try {
         const { username, password } = req.body;
-        console.log(username, password);
 
         let passwordsIguales = await comparePasswords(password);
         let usernamesIguales = await compareUsername(username);
