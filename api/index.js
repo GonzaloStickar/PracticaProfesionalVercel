@@ -11,6 +11,7 @@ const { sessionSecret } = require('./config.js');
 
 const app = express();
 
+
 app.use(express.json());
 
 //app.set('trust proxy', 1) // trust first proxy 
@@ -62,6 +63,7 @@ app.post('/dashboard', isAuth, (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         const { username, password } = req.body;
+        console.log(username, password);
 
         let passwordsIguales = await comparePasswords(password);
         let usernamesIguales = await compareUsername(username);

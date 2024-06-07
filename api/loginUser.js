@@ -40,11 +40,11 @@ const loginUserPOSTwrong = (req, res) => {
     `);
 };
 
-const comparePasswords = (password) => {
-    const passwordLogin = loginPassword;
+const comparePasswords = async (password) => {
+    const passwordLogin = loginPassword.toString();
 
     return new Promise((resolve, reject) => {
-        bcrypt.compare(password, passwordLogin, (err, result) => {
+        bcrypt.compare(password.toString(), passwordLogin, (err, result) => {
             if (err) {
                 console.error('Error al comparar la contraseña:', err);
                 reject(err);
@@ -56,11 +56,11 @@ const comparePasswords = (password) => {
     });
 };
 
-const compareUsername = (username) => {
-    const usernameLogin = loginUserName;
+const compareUsername = async (username) => {
+    const usernameLogin = loginUserName.toString();
 
     return new Promise((resolve, reject) => {
-        bcrypt.compare(username, usernameLogin, (err, result) => {
+        bcrypt.compare(username.toString(), usernameLogin, (err, result) => {
             if (err) {
                 console.error('Error al comparar el usuario:', err);
                 reject(err);
