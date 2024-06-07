@@ -6,9 +6,9 @@ var bodyParser = require('body-parser');
 //const { sql } = require('@vercel/postgres');
 const path = require('path');
 
-const { main } = require('./main.js');
-const { loginUserGET, loginUserPOSTwrong, comparePasswords, compareUsername } = require('./loginUser.js')
-const { sessionSecret } = require('./config.js');
+const { main } = require('./api/main.js');
+const { loginUserGET, loginUserPOSTwrong, comparePasswords, compareUsername } = require('./api/loginUser.js')
+const { sessionSecret } = require('./api/config.js');
  
 var app = express()
  
@@ -61,7 +61,7 @@ function parseData(json) {
     return JSON.parse(json);
 }
 
-app.post("/login", async (req, res) => {
+app.post("/login/:username", async (req, res) => {
     try {
         
         const json = JSON.stringify(req.body);
