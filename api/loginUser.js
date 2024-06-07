@@ -41,6 +41,12 @@ const loginUserPOSTwrong = (req, res) => {
 };
 
 const comparePasswords = async (password) => {
+
+    if (!loginPassword) {
+        console.error('loginPassword no está definido', loginPassword, password);
+        return false;
+    }
+
     const passwordLogin = loginPassword.toString();
 
     return new Promise((resolve, reject) => {
@@ -57,6 +63,12 @@ const comparePasswords = async (password) => {
 };
 
 const compareUsername = async (username) => {
+
+    if (!loginUserName) {
+        console.error('loginUserName no está definido', loginUserName, username);
+        return false;
+    }
+
     const usernameLogin = loginUserName.toString();
 
     return new Promise((resolve, reject) => {
