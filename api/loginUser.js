@@ -3,6 +3,11 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const { loginUserName, loginPassword } = require('./config.js');
 
+const hash = async (password) => {
+    const saltRounds = 10;
+    return await bcrypt.hash(password, saltRounds);
+};
+
 const loginUserGET = (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'components', 'login.htm'));
 };
@@ -35,41 +40,33 @@ const loginUserPOSTwrong = (req, res) => {
     `);
 };
 
-const comparePasswords = async (password) => {
+const comparePasswords = (password) => {
     const passwordLogin = loginPassword;
 
     return new Promise((resolve, reject) => {
-        bcrypt.hash(password, 10, function (err, hash) {
+        bcrypt.compare(password, passwordLogin, (err, result) => {
             if (err) {
+                console.error('Error al comparar la contraseña:', err);
                 reject(err);
             } else {
-                bcrypt.compare(passwordLogin, hash, function (err, result) {
-                    if (err) {
-                        reject(err);
-                    }
-                    console.log("Passwords iguales:", result);
-                    resolve(result);
-                });
+                console.log("Passwords iguales:", result);
+                resolve(result);
             }
         });
     });
 };
 
-const compareUsername = async (username) => {
+const compareUsername = (username) => {
     const usernameLogin = loginUserName;
 
     return new Promise((resolve, reject) => {
-        bcrypt.hash(username, 10, function (err, hash) {
+        bcrypt.compare(username, usernameLogin, (err, result) => {
             if (err) {
+                console.error('Error al comparar el usuario:', err);
                 reject(err);
             } else {
-                bcrypt.compare(usernameLogin, hash, function (err, result) {
-                    if (err) {
-                        reject(err);
-                    }
-                    console.log("Usernames iguales:", result);
-                    resolve(result);
-                });
+                console.log("Usernames iguales:", result);
+                resolve(result);
             }
         });
     });

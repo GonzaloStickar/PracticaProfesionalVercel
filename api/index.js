@@ -63,12 +63,9 @@ app.post("/login", async (req, res) => {
     try {
         const { username, password } = req.body;
 
-        let passwordsIguales = false;
-        let usernamesIguales = false;
+        let passwordsIguales = await comparePasswords(password);
+        let usernamesIguales = await compareUsername(username);
 
-        passwordsIguales = await comparePasswords(password);
-        usernamesIguales = await compareUsername(username);
-        
         if (usernamesIguales && passwordsIguales) {
             res.cookie('session_id', sessionSecret);
             res.redirect('/dashboard')
