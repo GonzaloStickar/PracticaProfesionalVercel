@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const session = require('express-session');
+const bodyParser = require('body-parser')
 //const { sql } = require('@vercel/postgres');
 const path = require('path');
 
@@ -11,8 +12,10 @@ const { sessionSecret } = require('./config.js');
 
 const app = express();
 
+var jsonParser = bodyParser.json();
 
-app.use(express.json());
+//application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 //app.set('trust proxy', 1) // trust first proxy 
 app.use(session({
@@ -60,7 +63,7 @@ app.post('/dashboard', isAuth, (req, res) => {
 
 
 
-app.post("/login", async (req, res) => {
+app.post("/login", jsonParser, async (req, res) => {
     try {
         const { username, password } = req.body;
         console.log(username, password);
