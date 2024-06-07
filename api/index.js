@@ -64,7 +64,7 @@ app.post('/dashboard', isAuth, (req, res) => {
 
 
 
-app.post("/login", urlencodedParser, async (req, res) => {
+app.post("/login", jsonParser, async (req, res) => {
     try {
         const { username, password } = req.body;
         console.log(username, password);
