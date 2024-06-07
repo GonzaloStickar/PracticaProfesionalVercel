@@ -57,17 +57,22 @@ app.post('/dashboard', isAuth, (req, res) => {
     res.status(200).send("POST permitido en esta ruta.");
 });
 
+function parseData(json) {
+    return JSON.parse(json);
+}
 
 app.post("/login", async (req, res) => {
     try {
-        const { username, password } = req.body;
 
-        let passwordsIguales = await comparePasswords(password);
-        let usernamesIguales = await compareUsername(username);
+        const json = JSON.stringify(req.body);
+        let data = parseData(json);
+
+        let passwordsIguales = await comparePasswords(data.password);
+        let usernamesIguales = await compareUsername(data.username);
 
         if (usernamesIguales && passwordsIguales) {
             res.cookie('session_id', sessionSecret);
-            res.redirect('/dashboard')
+            return res.redirect('/dashboard')
         } else {
             return loginUserPOSTwrong(req, res);
         }
